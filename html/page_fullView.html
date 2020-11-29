@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          body{
+              overflow: hidden;
+          }
+      </style>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/three.js"></script>
+  <script type="text/javascript" src="../script/OrbitControls.js"></script>
+
+  <script type="text/javascript">
+      // window.onload = function(){
+      apiready = function(){
+            api.openFrame({
+                name: 'load',
+                url: 'load.html',
+                bounces: false,
+                rect: {
+                    x: 0,
+                    y: 0,
+                    w: 'auto',
+                    h: 'auto'
+                },
+                pageParam: {
+                    maxLoadTime: 2000
+                }
+            })
+          let scene = new THREE.Scene();
+          let renderer = new THREE.WebGLRenderer({
+              alpha: true,
+              antialias:true
+          });
+
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setClearColor("#676973");
+          document.documentElement.appendChild(renderer.domElement);
+          var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
+          let control=new THREE.OrbitControls(camera,renderer.domElement);
+          let geometry = new THREE.CubeGeometry( 1, 1, 1 );
+          let material = new THREE.MeshBasicMaterial({
+              opacity:0,
+              transparent:true
+          });
+          let cube = new THREE.Mesh(geometry, material);
+          cube.position.set(10,0,0);
+          scene.add(cube);
+          control.target=new THREE.Vector3(0,0,1);
+          control.minDistance=1;
+          control.maxDistance=6;
+          camera.position.set(0,0,3);
+          var isStart=false;
+          //生成全景图
+          function initSkybox(path) {
+              let count=0;
+              let name = ["px", "nx", "py", "ny", "pz", "nz"];
+              let format = ".jpg";
+              let materials=[];
+              //加载图片
+              for (let i = 0; i < 6; i++)
+              {
+                  //加载纹理
+                  // let texture=new THREE.TextureLoader().load("../image/panoramic/hai1/"+name[i]+format);
+                  let texture=new THREE.TextureLoader().load("../image/panoramic/"+path+"/"+name[i]+format,function(){
+                        count++;
+                        if(count>=6)
+                        {
+                            isStart=true;
+                            api.sendEvent({
+                                name: 'loadFinished'
+                            });
+                        }
+                  });
+                  //放入材质数组
+                  materials.push(new THREE.MeshBasicMaterial({
+                      map:texture,
+                      side:THREE.DoubleSide
+                  }))
+              }
+              let geometry=new THREE.BoxGeometry(15,15,15);
+              geometry.scale(-1,1,1);
+              let skybox=new THREE.Mesh(geometry,materials);
+              skybox.position.set(0,0,0);
+              scene.add(skybox);
+          }
+
+
+          //获取路径
+          function getPath() {
+              return api.pageParam.panoramicPath;
+          }
+
+          initSkybox(getPath());
+          // initSkybox("panda2");
+          function render() {
+                requestAnimationFrame(render);
+                if(isStart)
+                {
+                    renderer.render(scene, camera);
+                    control.update();
+                }
+          }
+          render();
+      };
+  </script>
+  </html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>头部导航</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style type="text/css">
+        html,body{
+            height: 100%;
+            overflow-x:hidden;
+        }
+        body{
+            background-color: #fff;
+            padding: 0;
+            margin: 0;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            height: 100%;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            flex-flow: column;
+        }
+        .head{
+            position: absolute;
+            display: flex;
+            width: 100%;
+            height: 70px;
+            background-color: #fffefe;
+        }
+        nav {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            top: 35px;
+            border-bottom: 1px solid #d6d6d6;
+        }
+
+        nav .menu {
+            width: 25%;
+            height: 100%;
+            line-height: 40px;
+            float: left;
+            text-align: center;
+        }
+        nav .menu.selected {
+            font-size: 20px;
+            color: #f973f0;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <nav id="nav" class="nav">
+        <div class="menu selected" tapmode="selected" onclick="fnSetNavMenuIndex(0)">活动</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(1)">推荐</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(2)">关注</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(3)">个人</div>
+    </nav>
+</div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        api.setStatusBarStyle({
+            style : 'dark',
+            color : 'transparent'
+        });
+        api.addEventListener({
+            name: 'btBarChangeTofrist'
+        }, function(ret, err) {
+            init();
+        });
+        var nav = $api.byId('nav');
+        menus = $api.domAll(nav, '.menu');
+        init();
+    };
+
+    var menus;
+
+    function init() {
+        let nav=document.getElementById("nav");
+        api.openFrameGroup({
+            name: 'frist_frames',
+            scrollEnabled: true,
+            rect: {
+                x: 0,
+                y: nav.offsetHeight+nav.offsetTop,
+                w: api.winWidth,
+                h: api.frameHeight + $api.dom('.nav').offsetHeight - 60
+            },
+            index: 0,
+            frames: [{
+                name: 'page0',
+                url: './lunbo.html'
+            }, {
+                name: 'page1',
+                url: './tab/page1.html'
+            }, {
+                name: 'page2',
+                url: './tab/page2.html'
+            }, {
+                name: 'page3',
+                url: './tab/page3.html'
+            }],
+            bounces:true
+        }, function(ret, err) {
+            fnSetNavMenuSelected(ret.index);
+        });
+    }
+
+    function fnSetNavMenuIndex(index_) {
+        fnSetNavMenuSelected(index_);
+        api.setFrameGroupIndex({
+            name: 'frist_frames',
+            index: index_,
+            scroll: true
+        });
+    }
+
+    function fnSetNavMenuSelected(index_) {
+        for (var i = 0; i < menus.length; i++) {
+            if (index_ == i) {
+                $api.addCls(menus[i], 'selected');
+            } else {
+                $api.removeCls(menus[i], 'selected');
+            }
+        }
+    }
+
+</script>
+</html>

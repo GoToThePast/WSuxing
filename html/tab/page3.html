@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>fixedPane</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        .clearfix:before,
+        .clearfix:after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .clearfix{
+            zoom: 1;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            font-family: 楷体, 宋体, 微软雅黑;
+        }
+        .container{
+            width: 94%;
+            height: 100%;
+            margin-left: 3%;
+            /*background-color: cadetblue;*/
+        }
+        .user{
+            display: flex;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .user img{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            /*border: black 1px solid;*/
+        }
+        .user>div{
+            width: 130px;
+            height: 80px;
+            line-height: 30px;
+            text-align: center;
+            margin-top: 9px;
+            margin-left: 7px;
+            /*background-color: red;*/
+            font-size: 22px;
+            font-weight: bold;
+            color: #636363;
+
+
+        }
+        .user>div>p{
+            font-size: 14px;
+            color: #7a7a7a;
+
+        }
+        #info{
+            width: 80%;
+            height: 40px;
+            margin-top: 5px;
+            margin-left: 10%;
+            background-size: 100% 100%;
+        }
+        #info1{
+            width: 90%;
+            height: 43px;
+            margin-top: 24px;
+            margin-left: 5%;
+            background-size: 100% 100%;
+        }
+        .other{
+            width: 90%;
+            height: 30px;
+            margin: 8% 0 0 5%;
+            display: flex;
+        }
+        .other img{
+            width: 30px;
+            height: 30px;
+            margin-left: 12px;
+        }
+        .other p{
+            display: block;
+            width: 80px;
+            height: 30px;
+            font-size: 16px;
+            color: #6c6c6c;
+            margin-left: 21px;
+            line-height: 30px;
+            /*font-weight: bold;*/
+
+        }
+        .other div{
+            font-size: 18px;
+            color: #818181;
+            margin-left: 140px;
+            line-height: 30px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container clearfix">
+        <div class="user">
+            <img src="../../image/yu/h5.jpg" alt="">
+            <div>
+                锋相随^_^ <br>
+                <p>积分：2000</p>
+            </div>
+        </div>
+        <img id="info" src="../../image/yu/i1.png" alt="">
+        <img id="info1" src="../../image/yu/i2.png" alt="">
+        <div class="other">
+            <img src="../../image/yu/icon1.png" alt="">
+            <p>我的兑换</p>
+            <div>></div>
+        </div>
+        <div class="other">
+            <img src="../../image/yu/icon2.png" alt="">
+            <p>积分商城</p>
+            <div>></div>
+        </div>
+        <div class="other">
+            <img src="../../image/yu/icon3.png" alt="">
+            <p>联系客服</p>
+            <div>></div>
+        </div>
+        <div class="other">
+            <img src="../../image/yu/icon4.png" alt="">
+            <p>关于软件</p>
+            <div>></div>
+        </div>
+        <div class="other">
+            <img src="../../image/yu/icon5.png" alt="">
+            <p>设置</p>
+            <div>></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+apiready = function () {
+    api.openDrawerPane({
+        type: 'left'
+    });
+};
+</script>
+</html>

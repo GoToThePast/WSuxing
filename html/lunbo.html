@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>轮播图页面</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            /*overflow-x: hidden;
+            overflow-y: hidden;*/
+        }
+        .box1 {
+            position: relative;
+            margin-top: 230px;
+            margin-left: 15px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/5.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box2 {
+            position: relative;
+            top: -100px;
+            margin-left: 190px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/6.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box3 {
+            position: relative;
+            margin-top: -80px;
+            margin-left: 15px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/7.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box4 {
+            position: relative;
+            top: -100px;
+            margin-left: 190px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/8.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box5 {
+            position: relative;
+            margin-top: -80px;
+            margin-left: 15px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/9.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box6 {
+            position: relative;
+            top: -100px;
+            margin-left: 190px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/1.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box7 {
+            position: relative;
+            margin-top: -80px;
+            margin-left: 15px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/2.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        .box8 {
+            position: relative;
+            top: -100px;
+            margin-left: 190px;
+            width: 155px;
+            height: 100px;
+            /*修改背景*/
+            background: url(../image/lunbo/3.jpg);
+            background-size: 100% 100%;
+            filter: blur(0.5px);
+        }
+
+        p {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <p>活动</p>
+    </div>
+    <div class="box2">
+        <p>活动</p>
+    </div>
+    <div class="box3">
+        <p>活动</p>
+    </div>
+    <div class="box4">
+        <p>活动</p>
+    </div>
+    <div class="box5">
+        <p>活动</p>
+    </div>
+    <div class="box6">
+        <p>活动</p>
+    </div>
+    <div class="box7">
+        <p>活动</p>
+    </div>
+    <div class="box8">
+        <p>活动</p>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+var UIScrollPicture;
+    apiready = function() {
+        UIScrollPicture = api.require('UIScrollPicture');
+        fnopenlunbo();
+    }
+
+    function fnopenlunbo() {
+        UIScrollPicture.open({
+            rect: {
+                x: 15,
+                y: 20,
+                w: api.winWidth - 30,
+                h: 200
+            },
+            data: {
+                paths: [
+                    /*修改背景*/
+                    'widget://image/lunbo/1.jpg',
+                    'widget://image/lunbo/2.jpg',
+                    'widget://image/lunbo/3.jpg',
+                    'widget://image/lunbo/4.jpg',
+                ]
+            },
+            styles: {
+                indicator: {
+                    dot: {
+                        w: 10,
+                        h: 10,
+                        r: 5,
+                        margin: 10
+                    },
+                    align: 'center',
+                    color: '#FFFFFF',
+                    activeColor: '#DA70D6'
+                }
+            },
+            contentMode: 'scaleToFill',
+            interval: 3,
+            fixedOn: api.frameName,
+            loop: true,
+            fixed: false
+        }, function(ret, err) {
+
+        });
+    }
+</script>
+
+</html>

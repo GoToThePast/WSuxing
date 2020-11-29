@@ -1,0 +1,485 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello </title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" href="../css/main.css">
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/three.js"></script>
+    <script type="text/javascript" src="../script/jquery-1.12.4-min.js"></script>
+    <script type="text/javascript" src="../script/OBJLoader.js"></script>
+    <script type="text/javascript" src="../script/MTLLoader.js"></script>
+    <script type="text/javascript" src="../script/OrbitControls.js"></script>
+    <script type="text/javascript" src="../script/FBXLoader.js"></script>
+    <script type="text/javascript" src="../script/inflate.min.js"></script>
+    <script type="text/javascript" src="../script/GLTFLoader.js"></script>
+    <script src="../script/tween.umd.js"></script>
+
+</head>
+<body>
+    <canvas id="tcanvas" tapmode="selected"></canvas>
+</body>
+
+<script type="text/javascript">
+    // window.onload = function(){
+    apiready = function(){
+        // api.addEventListener({
+        //     name: 'keyback'
+        // }, function(ret, err) {
+        //     let res=confirm("确认退出");
+        //     if(res){
+        //         api.closeWidget();
+
+        //     }
+        // });
+        let scene = new THREE.Scene();
+        // scene.add(new THREE.AxesHelper(100));
+        let renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias:true,
+            canvas:document.getElementById("tcanvas")
+        });
+        // renderer
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        // 阴影边渲染出来更加模糊
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.setClearColor("#e1e1e1");
+        // renderer.setClearColor("#cbcbcb");
+        const MTLLoader= new THREE.MTLLoader();
+        const OBJLoader=new THREE.OBJLoader();
+        const FBXLoader=new THREE.FBXLoader();
+        const GLTFLoader = new THREE.GLTFLoader();
+        const collisionBox=[];
+
+        //initCamera
+        {
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
+            camera.position.set(35,13,0);
+            camera.lookAt(scene.position);
+            var _camera = new THREE.Mesh(new THREE.BoxGeometry( 1 , 1, 1 ),
+                new THREE.MeshBasicMaterial({color: '#5ab462',
+                    transparent:true,
+                    opacity:0
+                }));
+            scene.add(_camera);
+            _camera.add(camera);
+            camera.go=function (position) {
+                new TWEEN.Tween(camera).to({position:position},1000).onComplete(function () {
+                    _camera.attach(camera);
+                    updateText();
+                }).start();
+            }
+        }
+
+        let control=new THREE.OrbitControls(camera,renderer.domElement);
+        control.enabled=false;
+        control.autoRotate=true;
+        control.autoRotateSpeed=3;
+        var isStart=false;
+        //鼠标射线检测
+        {
+            var raycaster=new THREE.Raycaster();
+            var mouse = new THREE.Vector2();
+            renderer.domElement.addEventListener('click',intersects ,false);
+            function intersects( ev ) {
+                mouse.x = (ev.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(ev.clientY / window.innerHeight) * 2 + 1;
+                raycaster.setFromCamera(mouse, camera);
+                let intersects = raycaster.intersectObjects(collisionBox, true);
+                if (intersects.length > 0) {
+                    let plane = intersects[0].object;
+                    plane.material.color.set("#00ffe3");
+                    plane.material.needsUpdate= true;
+                    if (plane.isVisible)
+                    {
+                        let targetPos=new THREE.Vector3();
+                        camera.getWorldPosition(targetPos);
+                        camera.parent=null;
+                        camera.position.set(targetPos.x,targetPos.y,targetPos.z);
+                        camera.go(plane.goPos);
+                        setTimeout(function () {
+                            plane.jump();
+                        },2000);
+                        //复原
+                        setTimeout(function () {
+                            camera.go(targetPos);
+                            plane.material.color.set("#fefffe");
+                            plane.material.needsUpdate= true;
+                        },3000);
+                    }
+                }
+            }
+        }
+        let timer;
+        //鼠标拖动效果
+        {
+            var mouseX=0,mouseY=0;
+            var newMouseX=0,newMouseY=0;
+            var lastMouseX=0,lastMouseY=0;
+            var rotateX=0,rotateY=0;
+            renderer.domElement.addEventListener("touchstart",function (e) {
+                control.autoRotate=false;
+                clearTimeout(timer);
+                timer=setTimeout(function () {
+                    control.autoRotate=true;
+                },3000);
+                mouseX=e.touches[0].clientX;
+                mouseY=e.touches[0].clientY;
+                renderer.domElement.addEventListener("touchmove",rolatePic,false);
+            },false);
+            function rolatePic(e) {
+                lastMouseX=newMouseX;
+                lastMouseY=newMouseY;
+                newMouseX=(e.touches[0].clientX-mouseX)/400;
+                newMouseY=(e.touches[0].clientY-mouseY)/500;
+                rotateX=newMouseX-lastMouseX;
+                if(rotateX<0&&rotateX<-0.1)
+                {
+                    rotateX=-0.1;
+                }
+                else if(rotateX<0&&rotateX>-0.025)
+                {
+                    rotateX=-0.025;
+                }
+                else if(rotateX>0&&rotateX>0.1)
+                {
+                    rotateX=0.1;
+                }
+                else if(rotateX>0&&rotateX>0.025)
+                {
+                    rotateX=0.025;
+                }
+
+                if (rotateX<0)
+                  rotateX=-0.1;
+                else if (rotateX>0)
+                    rotateX=0.1;
+            }
+            renderer.domElement.addEventListener("touchend",function () {
+                newMouseX=newMouseY=0;
+                lastMouseX=lastMouseY=0;
+                rotateX=rotateY=0;
+                renderer.domElement.removeEventListener("touchmove",rolatePic,false);
+            });
+        }
+        //初始化场景
+        {
+            //加载场景
+            // GLTFLoader.load(
+            //     '../model/main.glb',
+            //     function (gltf) {
+            //         gltf.scene.scale.setScalar(100);
+            //         gltf.scene.rotateY(40);
+            //         gltf.scene.position.set(0,-10,0);
+            //         scene.add(gltf.scene);
+            //         updateText();
+            //         isStart=true;
+            //         api.sendEvent({
+            //             name: 'loadFinished'
+            //         });
+            //     }
+            // )
+
+            GLTFLoader.load(
+                '../model/scene.glb',
+                function (gltf) {
+                    gltf.scene.rotateY(40);
+                    scene.add(gltf.scene);
+                    updateText();
+                    isStart=true;
+                    api.sendEvent({
+                        name: 'loadFinished'
+                    });
+                }
+            )
+             //加载三星堆
+             GLTFLoader.load(
+                '../model/sxd.glb',
+                function (gltf) {
+                    let sxd=gltf.scene;
+                    sxd.scale.setScalar(0.6);
+                    sxd.position.set(-7.2,1.8,4.8);
+                    sxd.rotateY(0.8);
+                    scene.add(sxd);
+                    sxd.castShadow=true;
+                    sxd.receiveShadow=true;
+                    getText("../image/hun.png",jumpPage_HUN,
+                        new THREE.Vector3(-7.2,8,4.8),
+                        new THREE.Vector3(-9,5,6)
+                    );
+                }
+            )
+            //加载熊猫
+            GLTFLoader.load(
+                    '../model/panda.glb',
+                    function (gltf) {
+                        gltf.scene.scale.setScalar(0.02);
+                        let panda=gltf.scene.clone();
+                        gltf.scene.position.set(-2,2.1,-6.5);
+                        panda.position.set(-4,2.25,-6.5);
+                        panda.rotateY(40);
+                        panda.rotateX(-0.3);
+                        scene.add(gltf.scene);
+                        scene.add(panda);
+                        gltf.scene.castShadow=true;
+                        gltf.scene.receiveShadow=true;
+                        panda.castShadow=true;
+                        panda.receiveShadow=true;
+                        let text = getText("../image/xin.png",jumpPage_XIN,
+                            new THREE.Vector3(-3,8,-6),
+                            new THREE.Vector3(-6,7,-12)
+                        );
+                    }
+            )
+            MTLLoader.load(
+                "../model/obj/BigBush.mtl",
+                function (materials) {
+                    materials.preload();
+                    let objLoader = new THREE.OBJLoader();
+                    objLoader.setMaterials(materials);
+                    objLoader.load(
+                        "../model/obj/BigBush.obj",
+                        function (obj) {
+                            obj.position.set(5,13,-5);
+                            obj.scale.setScalar(0.7);
+                            obj.rotateY(30);
+                            scene.add(obj);
+                        }
+                    )
+                }
+            )
+            MTLLoader.load(
+                "../model/obj/Cloud1.mtl",
+                function (materials) {
+                    materials.preload();
+                    let objLoader = new THREE.OBJLoader();
+                    objLoader.setMaterials(materials);
+                    objLoader.load(
+                        "../model/obj/Cloud1.obj",
+                        function (obj) {
+                            obj.position.set(-5,10,-5);
+                            let clone = obj.clone();
+                            clone.position.set(5,14,5);
+                            obj.rotateY(90);
+                            scene.add(obj);
+                            scene.add(clone);
+                        }
+                    )
+                }
+            )
+
+            //川味
+            getText("../image/wei.png",jumpPage_WEI,
+                new THREE.Vector3(4,8,6),
+                new THREE.Vector3(7,6,8.5)
+            );
+
+            //川渝
+            getText("../image/yu.png",jumpPage_YU,
+                new THREE.Vector3(8,8,-1),
+                new THREE.Vector3(8,5,-1)
+            );
+
+            //生成全景图
+            function initSkybox() {
+                let name = ["px", "nx", "py", "ny", "pz", "nz"];
+                let format = ".png";
+                let materials=[];
+                //加载图片
+                for (let i = 0; i < 6; i++)
+                {
+                    //加载纹理
+                    let texture=new THREE.TextureLoader().load("../image/sky/"+name[i]+format);
+                    //放入材质数组
+                    materials.push(new THREE.MeshBasicMaterial({
+                        map:texture,
+                        side:THREE.DoubleSide
+                    }))
+                }
+                let geometry=new THREE.BoxGeometry(2000,2000,2000);
+                geometry.scale(-1,1,1);
+                let skybox=new THREE.Mesh(geometry,materials);
+                skybox.position.set(0,0,0);
+                scene.add(skybox);
+            }
+            // initSkybox();
+
+        }
+        //生成图片
+        function getText(path,jumpFun,position,goPos) {
+            let geometry = new THREE.PlaneGeometry(5, 5);
+            let material = new THREE.MeshBasicMaterial( {
+                map:new THREE.TextureLoader().load(path),
+                color: '#fefffe', side: THREE.FrontSide,
+                transparent:true
+            } );
+            let plane = new THREE.Mesh( geometry, material);
+            scene.add(plane);
+            plane.isVisible=true;
+            plane.goPos=goPos;
+            plane.jump=jumpFun;
+            plane.appear=new TWEEN.Tween(plane.material).to({opacity:1},500);
+            plane.disappear=new TWEEN.Tween(plane.material).to({opacity:0},500);
+            plane.position.set(position.x,position.y,position.z);
+            plane.lookAt(camera.position);
+            collisionBox.push(plane);
+            return plane;
+        }
+
+        //更新图片
+        function updateText() {
+            let targetPos=new THREE.Vector3();
+            camera.getWorldPosition(targetPos);
+            for (let i=0;i< collisionBox.length;i++)
+            {
+                console.log();
+                collisionBox[i].lookAt(targetPos);
+                let dis=targetPos.distanceTo(collisionBox[i].position);
+                if (dis>36&&collisionBox[i].isVisible){
+                    //淡出
+                    collisionBox[i].isVisible=false;
+                    collisionBox[i].appear.stop();
+                    collisionBox[i].disappear.start();
+                }
+                else if (dis<=36&&!collisionBox[i].isVisible) {
+                    //淡入
+                    collisionBox[i].isVisible=true;
+                    collisionBox[i].disappear.stop();
+                    collisionBox[i].appear.start();
+                }
+            }
+        }
+
+        initLight();
+        function initLight() {
+            const dirLight3=new THREE.DirectionalLight('#d6d6d6', 3);
+            dirLight3.position.set(0,-30,0);
+            dirLight3.lookAt(scene.position);
+            scene.add(dirLight3);
+
+            //环境光
+            const ambLight = new THREE.AmbientLight('#e8e7c6',1);
+            scene.add(ambLight);
+
+            //
+            var spotLight = new THREE.SpotLight( '#e8e3d9' );
+            spotLight.position.set( -100, 300, 50 );
+            spotLight.intensity=0.3;
+            spotLight.lookAt(scene.position);
+            let spotLight1 = spotLight.clone();
+            spotLight1.position.set( 100, 300, 100 );
+            spotLight1.lookAt(scene.position);
+            scene.add( spotLight1 );
+            scene.add( spotLight );
+
+            const dirLight=new THREE.DirectionalLight('#d6d3d6', 0.4);
+            dirLight.position.set(-100,300,-100);
+            dirLight.lookAt(scene.position);
+            dirLight.castShadow=true;
+            scene.add(dirLight);
+        }
+
+
+        updateText();
+        let isload=false;
+        isStart=false;
+        function render() {
+            requestAnimationFrame(render);
+            if (isStart)
+            {
+                renderer.clear();
+                renderer.render(scene, camera);
+                if (rotateX!=0){
+                    _camera.rotateY(-rotateX);
+                    updateText();
+                }
+                control.update();
+                updateText();
+                TWEEN.update();
+
+            }
+            else{
+                if(!isload)
+                {
+                    isload=true;
+                    api.openFrame({
+                        name: 'load',
+                        url: 'load.html',
+                        bounces: false,
+                        rect: {
+                            x: 0,
+                            y: 0,
+                            w: 'auto',
+                            h: 'auto'
+                        }
+                    })
+                }
+            }
+        }
+        render();
+
+    };
+
+
+    function jumpPage_HUN() {
+        api.openWin({
+            name: 'page_hun',
+            url: 'page_hun.html',
+            bounces: false,
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    }
+    function jumpPage_XIN() {
+        api.openWin({
+            name: 'page_xin',
+            url: 'page_xin.html',
+            bounces: false,
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    }
+    function jumpPage_WEI() {
+        api.openWin({
+            name: 'page_wei',
+            url: 'page_wei.html',
+            bounces: false,
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    }
+    // pageParam: {
+    //     panoramicPath: 'jiu2'
+    // }
+    function jumpPage_YU() {
+        api.openWin({
+            name: 'page_yu',
+            url: 'page_yu.html',
+            bounces: false,
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          html{
+              width: 100%;
+              height: 100%;
+          }
+          body{
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background-image: url("../image/bck.jpg");
+          }
+          #ul_front{
+              position: relative;
+              width: 200px;
+              height: 200px;
+              z-index: 1;
+              display: flex;
+              /*background-color: red;*/
+          }
+          .li_front{
+              position: absolute;
+              width: 200px;
+              height: 200px;
+              /*background-color: #00ACED;*/
+          }
+          .img_front{
+              width: 100%;
+              height: 100%;
+              background-size: 100% 100%;
+              float: left;
+          }
+
+
+          #ul_bck{
+              position: relative;
+              width: 600px;
+              height: 60px;
+              z-index: 0;
+              display: flex;
+              filter: blur(1.5px);
+              /*background-color: #7fff51;*/
+          }
+          .li_bck{
+              position: absolute;
+              width: 60px;
+              height: 60px;
+              /*background-color: #ed41cf;*/
+          }
+          .img_bck{
+              width: 100%;
+              height: 100%;
+              background-size: 100% 100%;
+              float: left;
+          }
+          @font-face {
+              font-family: "mkh";
+              src: url("../res/mkh.ttf");
+          }
+            #text{
+                position: absolute;
+                text-align: center;
+                font-size: 40px;
+                bottom: 20%;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                font-family: "mkh";
+
+            }
+      </style>
+  </head>
+  <body>
+      <ul id="ul_front">
+          <li class="li_front"><img class="img_front" draggable="false" onclick="gotoPage('panda')"></li>
+          <li class="li_front"><img class="img_front" draggable="false" onclick="gotoPage('tea')"></li>
+          <li class="li_front"><img class="img_front" draggable="false" onclick="gotoPage('sx')"></li>
+          <li class="li_front"><img class="img_front" draggable="false" onclick="gotoPage('sxd')"></li>
+      </ul>
+        <ul id="ul_bck">
+            <li class="li_bck"><img class="img_bck" draggable="false"></li>
+            <li class="li_bck"><img class="img_bck" draggable="false"></li>
+            <li class="li_bck"><img class="img_bck" draggable="false"></li>
+            <li class="li_bck"><img class="img_bck" draggable="false"></li>
+        </ul>
+        <div id="text"></div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script src="../script/jquery-1.12.4-min.js"></script>
+
+  <script type="text/javascript">
+    //   window.onload=function(){
+      apiready = function () {
+          {
+              var ul_front=$("#ul_front");
+              var li_front=$(".li_front");
+              var img_front=$(".img_front");
+              var imgName=["panda","tea","sx","sxd"];
+              var textName=["大熊猫","茶","蜀绣","三星堆"];
+              var ul_bck=$("#ul_bck");
+              var li_bck=$(".li_bck");
+              var img_bck=$(".img_bck");
+              var left_bck=90;
+              var left_front=120;
+              var width_front=$(li_front[0]).width();
+              var width_bck=$(li_bck[0]).width();
+
+              img_front.each(function (i,n) {
+                    n.src="../image/hun/"+imgName[i]+".png";
+              })
+              img_bck.each(function (i,n) {
+                    n.src="../image/hun/"+imgName[3-i]+".png";
+              })
+              ul_front.css({
+                  width:($(li_front.get(0)).width()+left_front)*li_front.length+"px",
+                  top:window.innerHeight/2-ul_front.height()/2
+              })
+              ul_bck.css({
+                  width:($(li_bck.get(0)).width()+left_bck)*li_bck.length+"px",
+                  top:ul_front.offset().top/2-60+"px"
+              })
+              console.log($(li_front.get(0)).width()+left_front)
+              li_front.each(function (i,n) {
+                $(n).css({
+                    left:(left_front+width_front)*i
+                })
+                  console.log($(n).offset().left)
+              })
+              li_bck.each(function (i,n) {
+                  $(n).css({
+                      left:(left_bck+$(li_bck.get(0)).width())*i
+                  })
+                  console.log($(n).offset().left)
+              })
+          }
+
+          {
+              var mouseX=0;
+              var newMouseX=0;
+              var lastMouseX=0;
+              var dis=0;
+              var autoRoate=1.5;
+              dis=autoRoate;
+              let timer;
+              document.body.addEventListener("touchstart",function (e) {
+                  clearTimeout(timer);
+                  mouseX=e.touches[0].clientX;
+                  document.body.addEventListener("touchmove",rotate);
+              })
+              document.body.addEventListener("touchend",function () {
+                  lastMouseX=newMouseX=0;
+                  dis=0;
+                  timer=setTimeout(function () {
+                      dis=autoRoate;
+                  },2000);
+                  document.body.removeEventListener("touchmove",rotate);
+              })
+              
+              function rotate(e) {
+                  lastMouseX=newMouseX;
+                  newMouseX=(e.touches[0].clientX-mouseX)/3;
+                  dis=newMouseX-lastMouseX;
+                  if (dis>0) dis=4;
+                  else if (dis<0)dis=-4;
+              }
+
+              var text=$("#text");
+              setInterval(changeLeft,20);
+              let appearIndex=-1;
+              let lastAppearIndex=-1;
+              let isShow=false;
+              text.fadeOut(0);
+              function changeLeft() {
+                  let currentIndex=-1;
+                  let currentIndex_bck=-1;
+                    if (dis>0)
+                    {
+                        appearIndex=-1;
+                        li_front.each(function (i,n) {
+                            let li = $(n);
+                            li.css({
+                                left:li.offset().left+dis
+                            })
+                            if (li.offset().left>=(left_front+width_front)*3)
+                            {
+                                currentIndex=i;
+                            }
+                            if (li.offset().left<=180&&li.offset().left>=70)
+                            {
+                                appearIndex=i;
+                            }
+                        })
+                        li_bck.each(function (i,n) {
+                            let li = $(n);
+                            li.css({
+                                left:li.offset().left-dis
+                            })
+                            if (li.offset().left<=-width_bck)
+                            {
+                                currentIndex_bck=i;
+                            }
+
+                        })
+                    }
+                  if (dis<0)
+                  {
+                      appearIndex=-1;
+                      li_front.each(function (i,n) {
+                          let li = $(n);
+                          li.css({
+                              left:li.offset().left+dis
+                          })
+                          if (li.offset().left<=-width_front)
+                          {
+                              currentIndex=i;
+                          }
+                          if (li.offset().left<=180&&li.offset().left>=70)
+                          {
+                              appearIndex=i;
+                          }
+
+                      })
+                      li_bck.each(function (i,n) {
+                          let li = $(n);
+                          li.css({
+                              left:li.offset().left-dis
+                          })
+                          if (li.offset().left>=(left_bck+width_bck)*3)
+                          {
+                              currentIndex_bck=i;
+                          }
+                          if (li.offset().left<=180&&li.offset().left>=70)
+                          {
+
+                          }
+                      })
+                  }
+                  // if (dis!=0)console.log($(li_front[0]).offset().left)
+
+                  if (currentIndex!=-1) {
+                      if (dis>0)
+                      {
+                          $(li_front[currentIndex]).css({
+                              left:$(li_front[(currentIndex+li_front.length+1)%4]).offset().left-left_front-width_front+"px"
+                          })
+                      }
+                      else if (dis<0)
+                      {
+                          $(li_front[currentIndex]).css({
+                              left:$(li_front[(currentIndex+li_front.length-1)%4]).offset().left+left_front+width_front+"px"
+                          })
+                      }
+                  }
+
+                  if (currentIndex_bck!=-1) {
+                      if (dis>0)
+                      {
+                          $(li_bck[currentIndex_bck]).css({
+                              left:$(li_bck[(currentIndex_bck+li_bck.length-1)%4]).offset().left+left_bck+width_bck+"px"
+                          })
+                      }
+                      else if (dis<0)
+                      {
+                          $(li_bck[currentIndex_bck]).css({
+                              left:$(li_bck[(currentIndex_bck+li_front.length+1)%4]).offset().left-left_bck-width_bck+"px"
+                          })
+                      }
+                  }
+
+                  if (lastAppearIndex!=appearIndex&&lastAppearIndex!=-1)
+                  {
+                      text.fadeOut(500);
+                      lastAppearIndex=-1;
+                      isShow=false;
+                  }
+
+                  if (appearIndex!=-1)
+                  {
+                      if (!isShow)
+                      {
+                          text.html(textName[appearIndex]);
+                          text.fadeIn(500);
+                          lastAppearIndex=appearIndex;
+                          isShow=true;
+                      }
+
+                  }
+              }
+          }
+      }
+      function gotoPage(name) {
+          api.openWin({
+              name: 'name',
+              url: "./"+name+".html"
+          });
+      }
+  </script>
+  </html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>蜀绣</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .pages {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .page {
+            font-size: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            transform: translate3d(0px, 100%, 0px);
+            -webkit-transform: translate3d(0px, 100%, 0px);
+            -moz-transform: translate3d(0px, 100%, 0px);
+            transition: transform .5s ease-out;
+            -webkit-transition: -webkit-transform .5s ease-out;
+            -moz-transition: -moz-transform .5s ease-out;
+            background: url(../image/shuxiu/bg.jpg);
+            background-size: 100% 100%;
+        }
+
+        /* the box animation */
+        .box1 {
+            position: absolute;
+            margin-top: 30px;
+            width: 200px;
+            height: 270px;
+            right: -195px;
+            background: url(../image/shuxiu/1.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .box2 {
+            position: absolute;
+            margin-top: 30px;
+            width: 200px;
+            height: 270px;
+            right: -195px;
+            background: url(../image/shuxiu/2.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .box3 {
+            position: absolute;
+            margin-top: 30px;
+            width: 300px;
+            height: 270px;
+            right: -250px;
+            background: url(../image/shuxiu/3.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .play .myAnimation {
+            animation: picmove 1.5s ease 1 both;
+            -webkit-animation: picmove 1.5s ease 1 both;
+        }
+
+        @-webkit-keyframes picmove {
+            100% {
+                -webkit-transform: translate3d(-270px, 0, 0);
+                transform: translate3d(-270px, 0, 0);
+                -ms-transform: translate3d(-270px, 0, 0);
+            }
+        }
+
+        .words>p{
+          position: absolute;
+          margin-top: 300px;
+          left: -100px;
+          width: 30;
+          height: auto;
+          font-size: 16px;
+          color: grey;
+          text-align: center;
+          writing-mode: tb-rl;
+        }
+        .play .Animation1 {
+            animation: one 1s ease 0.2s 1 both;
+            -webkit-animation: one 1s ease 0.2s 1 both;
+        }
+        .words .tranlation{
+          font-size: 18px;
+          color: black;
+        }
+
+        @-webkit-keyframes one {
+            100% {
+                -webkit-transform: translate3d(390px, 0, 0);
+                transform: translate3d(390px, 0, 0);
+                -ms-transform: translate3d(390px, 0, 0);
+            }
+        }
+        .play .Animation2 {
+            animation: two 1s ease 0.5s 1 both;
+            -webkit-animation: two 1s ease 0.5s 1 both;
+        }
+        @-webkit-keyframes two {
+            100% {
+                -webkit-transform: translate3d(360px, 0, 0);
+                transform: translate3d(360px, 0, 0);
+                -ms-transform: translate3d(360px, 0, 0);
+            }
+        }
+        .play .Animation3 {
+            animation: three 1s ease 0.8s 1 both;
+            -webkit-animation: three 1s ease 0.8s 1 both;
+        }
+
+        @-webkit-keyframes three {
+            100% {
+                -webkit-transform: translate3d(330px, 0, 0);
+                transform: translate3d(330px, 0, 0);
+                -ms-transform: translate3d(330px, 0, 0);
+            }
+        }
+        .play .Animation4 {
+            animation: four 1s ease 1.1s 1 both;
+            -webkit-animation: four 1s ease 1.1s 1 both;
+        }
+        @-webkit-keyframes four {
+            100% {
+                -webkit-transform: translate3d(300px, 0, 0);
+                transform: translate3d(300px, 0, 0);
+                -ms-transform: translate3d(300px, 0, 0);
+            }
+        }
+        .play .Animation5 {
+            animation: five 1s ease 1.4s 1 both;
+            -webkit-animation: five 1s ease 1.4s 1 both;
+        }
+
+        @-webkit-keyframes five {
+            100% {
+                -webkit-transform: translate3d(270px, 0, 0);
+                transform: translate3d(270px, 0, 0);
+                -ms-transform: translate3d(270px, 0, 0);
+            }
+        }
+        .play .Animation6 {
+            animation: six 1s ease 1.7s 1 both;
+            -webkit-animation: six 1s ease 1.7s 1 both;
+        }
+        @-webkit-keyframes six {
+            100% {
+                -webkit-transform: translate3d(240px, 0, 0);
+                transform: translate3d(240px, 0, 0);
+                -ms-transform: translate3d(240px, 0, 0);
+            }
+        }
+        .play .Animation7 {
+            animation: seven 1s ease 2.0s 1 both;
+            -webkit-animation: seven 1s ease 2.0s 1 both;
+        }
+        @-webkit-keyframes seven {
+            100% {
+                -webkit-transform: translate3d(210px, 0, 0);
+                transform: translate3d(210px, 0, 0);
+                -ms-transform: translate3d(210px, 0, 0);
+            }
+        }
+        .play .Animation8 {
+            animation: eight 1s ease 2.3s 1 both;
+            -webkit-animation: eight 1s ease 2.3s 1 both;
+        }
+        @-webkit-keyframes eight {
+            100% {
+                -webkit-transform: translate3d(180px, 0, 0);
+                transform: translate3d(180px, 0, 0);
+                -ms-transform: translate3d(180px, 0, 0);
+            }
+        }
+        .play .Animation9 {
+            animation: nine 1s ease 2.6s 1 both;
+            -webkit-animation: nine 1s ease 2.6s 1 both;
+        }
+        @-webkit-keyframes nine {
+            100% {
+                -webkit-transform: translate3d(150px, 0, 0);
+                transform: translate3d(150px, 0, 0);
+                -ms-transform: translate3d(150px, 0, 0);
+            }
+        }
+        .play .animation1 {
+            animation: ones 1s ease 0.2s 1 both;
+            -webkit-animation: ones 1s ease 0.2s 1 both;
+        }
+        @-webkit-keyframes ones {
+            100% {
+                -webkit-transform: translate3d(320px, 0, 0);
+                transform: translate3d(320px, 0, 0);
+                -ms-transform: translate3d(320px, 0, 0);
+            }
+        }
+        .play .animation2 {
+            animation: twos 1s ease 0.5s 1 both;
+            -webkit-animation: twos 1s ease 0.5s 1 both;
+        }
+        @-webkit-keyframes twos {
+            100% {
+                -webkit-transform: translate3d(290px, 0, 0);
+                transform: translate3d(290px, 0, 0);
+                -ms-transform: translate3d(290px, 0, 0);
+            }
+        }
+        .play .animation3 {
+            animation: threes 1s ease 0.8s 1 both;
+            -webkit-animation: threes 1s ease 0.8s 1 both;
+        }
+
+        @-webkit-keyframes threes {
+            100% {
+                -webkit-transform: translate3d(260px, 0, 0);
+                transform: translate3d(260px 0, 0);
+                -ms-transform: translate3d(260px, 0, 0);
+            }
+        }
+        .play .animation4 {
+            animation: fours 1s ease 1.1s 1 both;
+            -webkit-animation: fours 1s ease 1.1s 1 both;
+        }
+        @-webkit-keyframes fours {
+            100% {
+                -webkit-transform: translate3d(230px, 0, 0);
+                transform: translate3d(230px, 0, 0);
+                -ms-transform: translate3d(230px, 0, 0);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="pages">
+        <div class="page">
+            <div class="box1 myAnimation"></div>
+            <div class="words">
+              <p class="Animation1 tranlation">芙蓉鲤鱼图</p>
+              <p class="Animation2">鲤鱼象征吉祥如意、连年有余，以鲤鱼为主，配景是芙蓉花</p>
+              <p class="Animation3">根据花、鱼、叶、杆不同的特点，采用蜀绣不同的针法</p>
+              <p class="Animation4">盖针、点针、沙针、复盖针等</p>
+              <p class="Animation5">使鲤鱼的层次分明、神情怡然、栩栩如生</p>
+              <p class="Animation6">绣出的鲤鱼远近虚实得当</p>
+              <p class="Animation7">画面虽不着一丝水纹</p>
+              <p class="Animation8">但通过配景和鱼的沉浮游动的各种姿态</p>
+              <p class="Animation9">却使人感到所绣之鱼宛在水中</p>
+            </div>
+        </div>
+        <div class="page">
+            <div class="box2 myAnimation"></div>
+            <div class="words">
+              <p class="animation1 tranlation">蜀宫乐女图</p>
+              <p class="animation2">画家李星武以永陵二十四伎乐浮雕为素材创作的主题国画 </p>
+              <p class="animation3">此主题画作反映了前蜀时期成都宫廷乐舞的盛况</p>
+              <p class="animation4">与千年来川蜀民众对艺术的不变情怀</p>
+            </div>
+        </div>
+        <div class="page">
+          <div class="box3 myAnimation"></div>
+          <div class="words">
+            <p class="Animation1 tranlation">大小熊猫座屏</p>
+            <p class="Animation2">蜀绣中的代表作</p>
+            <p class="Animation3">用晕针来表现了绣物的质感</p>
+            <p class="Animation4">体现绣物的光、色、形</p>
+            <p class="Animation5">把熊猫绣得惟妙惟肖</p>
+            <p class="Animation6">体现了熊猫的憨态</p>
+            <p class="Animation7">线法平顺光亮、针脚整齐、施针严谨</p>
+            <p class="Animation8">掺色柔和、劲气生动、虚实得体</p>
+          </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    }
+    // PageSlide接收三个参数:页面元素,要设定的滑动方向,可选的扩展函数
+    var PageSlide = function(el, swipe, options) {
+        this.options = options || {} //可选函数
+        this.current = 0 //当前页面索引
+        this.pageX //横向的手指落点
+        this.pageY //纵向的手指落点
+        this.height //设备高度
+        this.width //设备宽度
+        this.flag //判断滑动方向的变量
+        this.move //滑动的距离
+        this.$el = el //当前页面的对象
+        this.swipe = swipe || 'Y' //滑动方向参数
+        this.resize().init().bindEvents() //初始化
+    }
+
+
+    PageSlide.prototype.init = function(i) {
+        var current = i ? this.$el.children[i] : this.$el.firstElementChild
+        if (!current) throw 'ERROR';
+        //moving类名作为当前滑动页面的标记,也在样式中作滑动的扩展效果
+        current.classList.add('moving')
+        current.style.webkitTransform = 'translate3d(0,0,0)'
+            //以swipe的值预设置其他页面的宽高，获得流畅的交互效果
+        for (var i = 1; i < this.$el.children.length; i++) {
+            this['set' + this.swipe](this.$el.children[i], (this.swipe === 'Y' ? this.height : this.width))
+        }
+        setTimeout(function() {
+            current.classList.remove('moving')
+            current.classList.add('play')
+        }, 3e2)
+        return this
+    }
+
+    //为页面绑定各种事件的绑定函数
+    PageSlide.prototype.bindEvents = function() {
+            var self = this
+
+            window.addEventListener('resize orientationchange', this.resize.bind(this), false)
+
+            'touchstart touchmove touchend touchcancel'.split(' ').forEach(function(evn) {
+                //将四个触控函数（申明在后面）绑定到每个页面
+                self.$el.addEventListener(evn, self[evn].bind(self), false)
+            })
+        }
+        //获得当前触控的页面对象
+    PageSlide.prototype.getCurrent = function() {
+            return this.$el.children[this.current]
+        }
+        //初始化时获得设备的宽高
+    PageSlide.prototype.resize = function() {
+            this.width = this.$el.parentNode.clientWidth
+            this.height = this.$el.parentNode.clientHeight
+            return this
+        }
+        //到达任意页面的random()方法
+    PageSlide.prototype.random = function() {
+            var count = this.$el.children.length
+            var current = this.current
+            var arr = []
+            var num
+
+            for (var i = 0; i < count; i++) {
+                if (i !== current) arr.push(i.toString())
+            }
+
+            num = Math.floor(Math.random() * arr.length)
+            this.direct(+arr[num])
+        }
+        // 四个内建的滑动事件函数,与前面绑定函数相呼应
+    PageSlide.prototype.touchstart = function(e) {
+        var touches = e.touches[0]
+
+        //触控开始
+        this.flag = null
+        this.move = 0
+
+        //记录落点
+        this.pageX = touches.pageX
+        this.pageY = touches.pageY
+    }
+
+    PageSlide.prototype.touchmove = function(e) {
+        var touches = e.touches[0]
+        var X = touches.pageX - this.pageX
+        var Y = touches.pageY - this.pageY
+        var current = this.getCurrent()
+        var next = current.nextElementSibling
+        var prev = current.previousElementSibling
+
+        //添加移动样式
+        if (!this.flag) {
+            this.flag = Math.abs(Y) > Math.abs(X) ? 'Y' : 'X'
+
+            if (this.flag === this.swipe) {
+                current.classList.add('moving')
+                next && next.classList.add('moving')
+                prev && prev.classList.add('moving')
+            }
+        }
+
+        if (this.flag === this.swipe) {
+            e.preventDefault()
+            e.stopPropagation()
+
+            switch (this.swipe) {
+                case 'X':
+                    //swipe horizontal
+                    this.move = X
+
+                    this.setX(current, X)
+                    next && (this.setX(next, X + this.width))
+                    prev && (this.setX(prev, X - this.width))
+                    break;
+                case 'Y':
+                    //swipe vertical
+                    this.move = Y
+
+                    this.setY(current, Y)
+                    next && (this.setY(next, Y + this.height))
+                    prev && (this.setY(prev, Y - this.height))
+                    break;
+            }
+        }
+    }
+
+    PageSlide.prototype.touchend = function(e) {
+        var minRange = 50
+        var move = this.move
+        var current = this.getCurrent()
+        var next = current.nextElementSibling
+        var prev = current.previousElementSibling
+
+        current.classList.remove('moving')
+        next && next.classList.remove('moving')
+        prev && prev.classList.remove('moving')
+        if (!this.flag) return
+
+        e.preventDefault()
+            //滑动结束前往下一页面,next()方法调用了go()方法
+        if (move < -minRange && next) return this.next()
+        if (move > minRange && prev) return this.prev()
+        this.reset()
+    }
+
+    PageSlide.prototype.touchcancel = function(e) {
+        var current = this.getCurrent()
+        var next = current.nextElementSibling
+        var prev = current.previousElementSibling
+
+        current.classList.remove('moving')
+        next && next.classList.remove('moving')
+        prev && prev.classList.remove('moving')
+        this.reset()
+    }
+
+    //动态设定translate3d参数方法
+    PageSlide.prototype.setX = function(el, x, unit) {
+        el && (el.style.webkitTransform = 'translate3d(' + x + (unit || 'px') + ',0,0)')
+    }
+
+    PageSlide.prototype.setY = function(el, y, unit) {
+            el && (el.style.webkitTransform = 'translate3d(0,' + y + (unit || 'px') + ',0)')
+        }
+        //设置当前触控页面translate3d参数为0的方法
+    PageSlide.prototype.setCurrent = function(el, i) {
+            el && (el.style.webkitTransform = 'translate3d(0,0,0)')
+
+            if (i) {
+                this.current = i
+                this.$current = this.$el.children[i]
+            }
+
+        }
+        //调用go()方法前往下一或上一页面
+    PageSlide.prototype.next = function() {
+        this.go(this.current + 1)
+    }
+
+    PageSlide.prototype.prev = function() {
+            this.go(this.current - 1)
+        }
+        //重置方法,用于初始化以及当前页面的重置
+    PageSlide.prototype.reset = function() {
+            var width = this.width
+            var height = this.height
+            var swipe = this.swipe
+            var current = this.getCurrent()
+            var prev = current.previousElementSibling
+            var next = current.nextElementSibling
+
+            this.setCurrent(current)
+            prev && (this['set' + swipe](prev, -(swipe === 'Y' ? height : width)))
+            next && (this['set' + swipe](next, swipe === 'Y' ? height : width))
+        }
+        //去往下一或上一页面的go方法
+    PageSlide.prototype.go = function(i) {
+            var onFinish = this.options.onFinish
+            var current = this.getCurrent()
+            var total = this.$el.childElementCount
+            var target = this.$el.children[i]
+            var d = i < this.current ? -1 : 1
+
+
+            if (i === this.current || i < 0 || i >= total) return
+            if (onFinish && (typeof onFinish === 'function')) onFinish.call(this, i)
+                // 滑动完成调用方法
+            typeof this.options.tranSetionEnd === 'function' && this.options.tranSetionEnd.call(this)
+            this.current = i
+
+            this['set' + this.swipe](current, -d * (this.swipe === 'Y' ? this.height : this.width))
+            this.setCurrent(target, i)
+            this.finish(current, target)
+        }
+        //滑动完成后删除当前页面.play标记以及为下一页面添加.play标记
+    PageSlide.prototype.finish = function(curr, target) {
+        this.flag = null
+        setTimeout(function() {
+            curr && curr.classList.remove('play')
+            target && target.classList.add('play')
+        }, 3e2)
+    }
+
+    //直达任意页面的方法
+    //直达某一页面的方法, 因为有个项目的需要
+    //写了这个方法,要从任意页面开始滑动依然能保持正常的滑动体验
+    //就需要将直达页面的前面所有页面的translate3d参数都设置为(0,-height,0)
+    PageSlide.prototype.direct = function(i) {
+            if (i && typeof(i) === 'number') {
+                this.go(i)
+                for (var j = 0; j < i; j++) {
+                    this['set' + this.swipe](this.$el.children[j], -1 * (this.swipe === 'Y' ? this.height : this.width))
+                }
+            } else return
+
+
+        }
+        // 传参
+    /*document.addEventListener('touchmove', function(e) {
+        e.preventDefault()
+    })*/
+    var pages = new PageSlide(document.querySelector('.pages'), 'X', {
+        tranSetionEnd: function() {
+            /*console.log(this.current);*/
+        }
+    })
+</script>
+
+</html>

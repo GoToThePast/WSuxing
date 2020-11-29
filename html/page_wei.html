@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+        body{
+            font-family: 楷体, 宋体, 微软雅黑;
+          overflow: hidden;
+        }
+        #L {
+          z-index: 2;
+            position: absolute;
+            /*overflow: hidden;*/
+
+            background-color: white;
+        }
+        #L .c{
+          width:20%;
+          height: 20%;
+          /*background-color: white;*/
+          position: absolute;
+          text-align: center;
+        }
+        #L .c p{
+          display: block;
+          margin: 0 auto;
+          font-family: 楷体;
+            font-size: 25px;
+          color: red;
+        }
+        #L .c .pc{
+          position: absolute;
+          left:50%;
+        }
+        #L2 {
+          z-index: 1;
+            position: absolute;
+            /*overflow: hidden;*/
+
+            background-color: white;
+
+        }
+        #L2 .c{
+          width:20%;
+          height: 150%;
+          /*background-color: black;*/
+          position: absolute;
+
+          /*transform-origin:-50% 50%;
+          transform: rotate(30deg);*/
+
+        }
+        #L2 .c .pc{
+          position: absolute;
+          left:50%;
+        }
+        #L2 .c .g1{
+          position: absolute;
+          /*background-color: white;*/
+          background-image: url(../image/wei/suan0.png);
+          background-size: 100% 100%;
+        }
+        #L2 .c .g2{
+          position: absolute;
+          /*background-color: yellow;*/
+            background-image: url(../image/wei/suan0.png);
+            background-size: 100% 100%;
+        }
+        #L0 {
+          z-index: 3;
+            position: absolute;
+            /*overflow: hidden;*/
+            border: 2px solid rgb(143,143,143);
+            background-color: #ffffff;
+        }
+        #image{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 12%;
+            background-image: url("../image/wei/array.png");
+            background-size: 100% 100%;
+        }
+        #panDiv {
+            margin-left: -2px;
+          background-color: rgb(243,243,243);
+          position: absolute;
+        }
+        #panDiv img{
+            width: 300px;
+            height: 300px;
+            background-size: 100% 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        #panDiv div{
+            width: 300px;
+            height: auto;
+            margin: 0 auto;
+            text-align: center;
+            font-family: 楷体, 宋体, 微软雅黑;
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div id="L0">
+        <div id="image"></div>
+      <div id="panDiv">
+          <img src="../image/wei/ma0.png">
+          <div>
+              麻婆豆腐始创于清朝同治元年，开创于成都外北万福桥边。由于陈麻婆豆腐历代传人的不断努力，陈麻婆川菜馆虽距今一百四十余年盛名长盛不衰。并扬名海内外，深得国内外美食者好评。麻婆豆腐也成为了具有四川代表性的名菜，麻婆豆腐是四川省汉族传统名菜之一，属于川菜系。主要原料为配料和豆腐，材料主要有豆腐、牛肉末（也可以用猪肉）、辣椒和花椒等。麻来自花椒，辣来自辣椒，这道菜突出了川菜“麻辣”的特点。此菜大约在清代同治初年（1874年以后），由成都市北郊万福桥一家名为“陈兴盛饭铺”的小饭店老板娘陈刘氏所创。因为陈刘氏脸上有麻点，人称陈麻婆，她发明的烧豆腐就被称为“陈麻婆豆腐”。
+
+          </div>
+      </div>
+    </div>
+    <div id="L">
+      <div class="c1 c">
+        <div class="pc"></div>
+        <p >酸</p>
+      </div>
+      <div class="c2 c">
+        <div class="pc"></div>
+        <p >甜</p></div>
+      <div class="c3 c">
+        <div class="pc"></div>
+        <p >苦</p></div>
+      <div class="c4 c">
+        <div class="pc"></div><P >辣</P></div>
+      <div class="c5 c">
+        <div class="pc"></div><p>麻</p></div>
+      <div class="c6 c">
+        <div class="pc"></div><p>咸</p></div>
+    </div>
+    <div id="L2">
+      <div class="c1 c">
+        <div class="pc"></div>
+        <div class="g1"></div>
+        <div class="g2"></div>
+      </div>
+      <div class="c2 c">
+        <div class="pc"></div>
+        <div class="g1"></div>
+        <div class="g2"></div>
+      </div>
+      <div class="c3 c">
+        <div class="pc"></div>
+        <div class="g1"></div>
+        <div class="g2"></div>
+      </div>
+      <div class="c4 c">
+        <div class="pc"></div>
+        <div class="g1"></div>
+        <div class="g2"></div>
+      </div>
+      <div class="c5 c">
+        <div class="pc"></div>
+        <div class="g1"></div>
+        <div class="g2"></div>
+      </div>
+      <div class="c6 c">
+        <div class="pc"></div>
+        <div class="g1"></div>
+        <div class="g2"></div>
+      </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script src="../script/jquery.js"></script>
+<script src="../script/hammer.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.play
+        api.setScreenOrientation({
+            orientation: 'auto_portrait'
+        });
+        initL0();
+        initL();
+        initL2();
+        //一级轮盘
+        const L= document.getElementById("L");
+        const hammertime = new Hammer(L);
+        animateForAll(L,hammertime);
+        //二级轮盘
+        const L2= document.getElementById("L2");
+        const hammer = new Hammer(L2);
+        animateForAll2(L2,hammer);
+        //上拉块级元素绑定事件
+        const panDiv= document.getElementById("L0");
+        const hammerDiv = new Hammer(panDiv);
+        boxAddevtMove(panDiv,hammerDiv);
+        $("#L .c").css({
+          "font-family":"楷体"
+        })
+    }
+    function initL0(){
+      var winH=api.winHeight;
+      var winW=api.winWidth;
+
+      var jqbox=$("#L0");
+      $("#L0").css({
+        "width":""+winW*0.3+"px",
+        "height":""+winW*0.3+"px",
+        "border-radius":"100%"
+      })
+      var apiBox=$api.byId("L0");
+      var apiBoxOffset=$api.offset(apiBox);
+
+      console.log(apiBoxOffset.h/2);
+      console.log(winW-apiBoxOffset.w/2);
+      $("#L0").css({
+        "top":""+(winH-apiBoxOffset.h/2)+"px",
+        "left":""+((winW-apiBoxOffset.w)/2)+"px"
+      })
+      $("#panDiv").css({
+        "width":""+winW+"px",
+        "height":""+winH+"px",
+        "top":""+apiBoxOffset.h/2+"px",
+        "left":""+(-(winW-apiBoxOffset.w)/2)+"px"
+        //  "top":"50px"
+      })
+    }
+    function initL(){
+      var winH=api.winHeight;
+      var winW=api.winWidth;
+      var jqbox=$("#L");
+      $("body").css({
+        "height":""+winH+"px",
+        "width":""+winW+"px",
+        "background-color":"rgb(243,243,243)"
+      })
+      $("#L").css({
+        "width":""+winW*0.698+"px",
+        "height":""+winW*0.698+"px",
+        "border-radius":"100%",
+        "border":"2px solid rgb(143,143,143)"
+      })
+      var apiBox=$api.byId("L");
+      var apiBoxOffset=$api.offset(apiBox);
+      // console.log(apiBoxOffset.h/2);
+      // console.log(winW-apiBoxOffset.w/2);
+      $("#L").css({
+        "top":""+(winH-apiBoxOffset.h/2)+"px",
+        "left":""+((winW-apiBoxOffset.w)/2)+"px"
+      }).children(".c").each(function(i,n){
+        var bj=$(n);
+        //重定位
+        bj.css({
+          // "top":""+(apiBoxOffset.h/2-bj.innerWidth()/2)+"px",
+          "left":""+(jqbox.innerWidth()/2-bj.innerWidth()/2)+"px",
+          "transform-origin":"center "+jqbox.innerHeight()/2+"px"
+        })
+      })
+      $("#L").children(".c").each(function(i,n){
+        var bj=$(n);
+        //重定位
+        bj.css({
+          //旋转
+          "transform":"rotate("+(-60*i)+"deg)"
+        })
+      })
+    }
+    function initL2(){
+      var winH=api.winHeight;
+      var winW=api.winWidth;
+
+      var jqbox=$("#L2");
+
+      $("#L2").css({
+        "width":""+winW*1.05+"px",
+        "height":""+winW*1.05+"px",
+        "border-radius":"100%",
+        "border":"2px rgb(143,143,143) solid"
+      })
+      var apiBox=$api.byId("L2");
+      var apiBoxOffset=$api.offset(apiBox);
+
+      // console.log(apiBoxOffset.h/2);
+      // console.log(winW-apiBoxOffset.w/2);
+      $("#L2").css({
+        "top":""+(winH-apiBoxOffset.h/2)+"px",
+        "left":""+((winW-apiBoxOffset.w)/2)+"px"
+      }).children(".c").each(function(i,n){
+        var bj=$(n);
+        //重定位
+        var toRightY=0.11
+        // console.log((jqbox.innerWidth()-bj.innerWidth())/2);
+        bj.css({
+          "top":""+(-bj.innerHeight()*(1-toRightY))+"px",
+          "left":""+(jqbox.innerWidth()/2-bj.innerWidth()/2)+"px",
+          "transform-origin":"center "+(jqbox.innerHeight()/2+bj.innerHeight()*(1-toRightY))+"px"
+          // "+(-$("#L").innerWidth()-bj.innerWidth())/2+"
+        })
+      })
+      $("#L2").children(".c").each(function(i,n){
+        var bj=$(n);
+        //重定位
+        bj.css({
+
+          //旋转
+          "transform":"rotate("+(-i*60)+"deg)"
+
+        })
+        // console.log(bj.attr("transform-origin"));
+      })
+      /*========================================================================================*/
+      // 内部元素
+
+      $("#L2 .c").children(".g1").css({
+        "width":"60px",
+        "height":"60px",
+        "top":"89%",
+        "left":""+(jqbox.innerWidth()-$(this).innerWidth())/2+"px"
+      })
+      $("#L2 .c").children(".g2").css({
+        "width":"300px",
+        "height":"300px",
+        "left":"-150%"
+      })
+
+    }
+    function animateForAll(L,hammertime){
+      var winW=api.winWidth;
+      //初始量
+      var orgX=0;
+      var kX=0;
+      var changX=0;
+        hammertime.on('panstart panmove panend', function(ev) {
+          switch (ev.type) {
+            case "panstart":
+              orgX=ev.deltaX;
+              break;
+            case "panmove":
+              changX=kX+orgX-ev.deltaX;
+              if(changX>0){
+                var transform = "rotate("+(-changX)+"deg)";
+                L.style.transform =transform;
+              }else{
+                var transform = "rotate("+(-changX)+"deg)";
+                L.style.transform =transform;
+              }
+              break;
+            case "panend":
+              kX+=orgX-ev.deltaX;
+              // 监听小L
+              var jqo=99999;//记录最小值
+              var elem=null;
+              var index=-1;
+              $(L).children(".c").each(function(i,n){
+                var kk=$(n);
+                // console.log(i+" "+kk.offset().top);
+                if(kk.offset().top<jqo){
+                  elem=n;
+                  index=i;
+                  jqo=kk.offset().top;
+                }
+              })
+              //=============================================================
+              //换背景
+              changBackgroundImg(index);
+              //=============================================================
+              var toTop=99999;
+              console.log(orgX-ev.deltaX);
+              // 当前状态
+              var x0=$(elem).offset().top;
+              var x1=0;
+              if(orgX-ev.deltaX<0){//顺时针
+                kX--;
+
+                var transform = "rotate("+(-kX)+"deg)";
+                L.style.transform =transform;
+                //判断是否减小
+                if(x0>$(elem).offset().top){//方向正确继续顺时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX--;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }else{//方向错误逆时针时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX++;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }
+              }else{//逆时针
+                // console.log("这里是逆时针"+kX+" "+x0);
+                kX++;
+                var transform = "rotate("+(-kX)+"deg)";
+                L.style.transform =transform;
+                // console.log("动了一度后"+kX+" "+$(elem).offset().top);
+                //判断是否减小
+                if(x0>$(elem).offset().top){//方向正确继续顺时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX++;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }else{//方向错误逆时针时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX--;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }
+              }
+              changX=kX;
+              break;
+            default:
+              break;
+          }
+      });
+    }
+    function animateForAll2(L,hammertime){
+      var winW=api.winWidth;
+      //初始量
+      var orgX=0;
+      var kX=0;
+      var changX=0;
+      hammertime.on('panstart panmove panend', function(ev) {
+          switch (ev.type) {
+            case "panstart":
+              orgX=ev.deltaX;
+              break;
+            case "panmove":
+              changX=kX+orgX-ev.deltaX;
+              if(changX>0){
+                var transform = "rotate("+(-changX)+"deg)";
+                L.style.transform =transform;
+              }else{
+                var transform = "rotate("+(-changX)+"deg)";
+                L.style.transform =transform;
+              }
+              break;
+            case "panend":
+              kX+=orgX-ev.deltaX;
+              // 监听小L
+              var jqo=99999;//记录最小值
+              var elem=null;
+              var index=-1;
+              $(L).children(".c").each(function(i,n){
+                var kk=$(n);
+                // console.log(i+" "+kk.offset().top);
+                if(kk.offset().top<jqo){
+                  elem=n;
+                  index=i;
+                  jqo=kk.offset().top;
+                }
+              })
+              //=============================================================
+              //换背景
+              //=============================================================
+              var toTop=99999;
+              console.log(orgX-ev.deltaX);
+              // 当前状态
+              var x0=$(elem).offset().top;
+              var x1=0;
+              if(orgX-ev.deltaX<0){//顺时针
+                kX--;
+
+                var transform = "rotate("+(-kX)+"deg)";
+                L.style.transform =transform;
+                //判断是否减小
+                if(x0>$(elem).offset().top){//方向正确继续顺时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX--;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }else{//方向错误逆时针时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX++;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }
+              }else{//逆时针
+                // console.log("这里是逆时针"+kX+" "+x0);
+                kX++;
+                var transform = "rotate("+(-kX)+"deg)";
+                L.style.transform =transform;
+                // console.log("动了一度后"+kX+" "+$(elem).offset().top);
+                //判断是否减小
+                if(x0>$(elem).offset().top){//方向正确继续顺时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX++;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }else{//方向错误逆时针时针转动
+                  var sonx0=99999;
+                  for(var xR=0;xR<30;xR++){
+                    kX--;
+                    var transform = "rotate("+(-kX)+"deg)";
+                    L.style.transform =transform;
+                    if($(elem).children(".pc").offset().top<sonx0){
+                      sonx0=$(elem).children(".pc").offset().top;
+                    }else{
+                      break;
+                    }
+                  }
+                }
+              }
+              changX=kX;
+              break;
+            default:
+              break;
+          }
+      });
+        changBackgroundImg(0);
+    }
+    function changBackgroundImg(index){
+      switch (index) {
+        case 1://甜
+        $("#L2 .c").each(function(i,n){
+          var path="../image/wei/tian"+i+".png";
+          $(n).children(".g1").css("background-image","url("+path+")");
+          $(n).children(".g2").css("background-image","url("+path+")");
+        })
+        break;
+        case 2://苦
+        $("#L2 .c").each(function(i,n){
+          var path="../image/wei/ku"+1+".png";
+          $(n).children(".g1").css("background-image","url("+path+")");
+          $(n).children(".g2").css("background-image","url("+path+")");
+        })
+        break;
+        case 3://辣
+        $("#L2 .c").each(function(i,n){
+          var path="../image/wei/la"+1+".png";
+          $(n).children(".g1").css("background-image","url("+path+")");
+          $(n).children(".g2").css("background-image","url("+path+")");
+        })
+        break;
+        case 4://麻
+        $("#L2 .c").each(function(i,n){
+          var path="../image/wei/ma"+i+".png";
+          $(n).children(".g1").css("background-image","url("+path+")");
+          $(n).children(".g2").css("background-image","url("+path+")");
+        })
+        break;
+        case 5://咸
+        $("#L2 .c").each(function(i,n){
+          var path="../image/wei/xian"+1+".png";
+          $(n).children(".g1").css("background-image","url("+path+")");
+          $(n).children(".g2").css("background-image","url("+path+")");
+        })
+        break;
+        case 0://酸
+        $("#L2 .c").each(function(i,n){
+          var path="../image/wei/suan"+i+".png";
+          $(n).children(".g1").css("background-image","url("+path+")");
+          $(n).children(".g2").css("background-image","url("+path+")");
+        })
+        break;
+
+      break;
+        default:
+
+      }
+    }
+    function boxAddevtMove(box,hammerStart){
+      var winH=api.winHeight;
+      var oW, oH;
+      hammerStart.get('pan').set({  direction: Hammer.DIRECTION_ALL});
+      hammerStart.on('panstart', function(ev) {
+        oH=box.offsetTop;
+      });
+      hammerStart.on('pan panend', function(ev) {
+        var Y=ev.deltaY+oH;
+        box.style.top =Y+"px";
+        if(ev.type=="panend"){
+          if(oH=box.offsetTop<winH/2){
+            // 上去
+            box.style.top ="0px";
+          }else {
+            box.style.top =""+(winH-box.offsetHeight/2)+"px";
+          }
+        }
+      });
+    }
+</script>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>立方体旋转1</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            /*修改背景*/
+            background-image: url("../image/xin/bck/4.jpg");
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        .container .box {
+            position: absolute;
+            /* 实现水平垂直居中效果 */
+            top: calc(50% - 100px);
+            left: calc(50% - 100px);
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            transform-style: preserve-3d;
+            /* 定义3D渲染环境 */
+            /* transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, 0px); */
+            /* 定义旋转初始值（x, y, z）, 在空间的位置(x, y, z) */
+            transform: rotateX(-21deg) rotateY(38deg) rotateZ(0deg) translate3d(0px, 0px, 100px);
+            -webkit-transform: rotateX(-21deg) rotateY(38deg) rotateZ(0deg) translate3d(0px, 0px, 100px);
+            -moz-transform: rotateX(-21deg) rotateY(38deg) rotateZ(0deg) translate3d(0px, 0px, 100px);
+            transition: transform .5s ease-in;
+            -webkit-transition: -webkit-transform .5s ease-in;
+            -moz-transition: -moz-transform .5s ease-in;
+            /* 旋转一个合适的角度，使得正方体在平面的投影不是正投影，便于调整具体的面值 */
+        }
+
+        .container .box>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .container .box>div span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 1px solid #000;
+            background: #ccc;
+            user-select: none;
+            /* 禁止用户选择 */
+        }
+
+        .container .p {
+            position: absolute;
+            top: 100px;
+            height: auto;
+            line-height: auto;
+            width: 100%;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 24px;
+            opacity: 0;
+            /*实先规定文字的状态是不显示的*/
+        }
+
+        .Amination {
+            position: absolute;
+            top: 100px;
+            height: auto;
+            line-height: normal;
+            width: 100%;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 24px;
+            animation: fade-in 3s ease 1 both;
+            /*调用名称为fade-in的动画，全程动画显示时间4S，进入方式为ease，延时0S进入，播放次数1次*/
+            -webkit-animation: fade-in 3s ease-in-out 1 both;
+            -moz-animation: fade-in 3s ease-in-out 1 both;
+            -o-animation: fade-in 3s ease-in-out 1 both;
+            -ms-animation: fade-in 3s ease-in-out 1 both;
+        }
+
+        @-webkit-keyframes fade-in {
+            0% {
+                opacity: 0;
+                font-size: 24px;
+            }
+            100% {
+                opacity: 1;
+                font-size: 48px;
+            }
+        }
+
+        .container .box>div span img {
+            /* 设置高宽，加上object-fit属性，图片即可保持原比例，由浏览器自动选择中间部分进行展示 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /*
+* 把span在3D空间内修改为一个正方体
+* span的1-6对应6个面
+* 正方体边长为400px
+*/
+        /* 前四个面用一个角度即可，后面两个面需要换一个角度才能更好的看到关系 */
+
+        .container .box>div span:nth-child(1) {
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
+        }
+
+        .container .box>div span:nth-child(2) {
+            transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, -100px, 100px);
+        }
+
+        .container .box>div span:nth-child(3) {
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, -200px);
+        }
+
+        .container .box>div span:nth-child(4) {
+            transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, -100px, -100px);
+        }
+        /* 第五面与第六面，旋转角度一致，唯一不一样的是在空间的位置，调整位置 */
+
+        .container .box>div span:nth-child(5) {
+            transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) translate3d(-100px, 0px, 100px);
+        }
+
+        .container .box>div span:nth-child(6) {
+            transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) translate3d(-100px, 0px, -100px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p id="p" class="Amination"></p>
+        <div class="box" id="cube">
+            <div>
+                <!-- 修改背景 -->
+                <span><img src="../image/xin/jiu1.jpg" alt="" onclick="fnOpenFirst('jiu1');"></span>
+                <span><img src="../image/xin/qing1.jpg" alt="" onclick="fnOpenSecond('qing1');"></span>
+                <span><img src="../image/xin/hai2.jpg" alt="" onclick="fnOpenThird('hai2');"></span>
+                <span><img src="../image/xin/panda2.jpg" alt="" onclick="fnOpenFourth('panda2');"></span>
+                <span><img src="../image/xin/jiu2.jpg" alt="" onclick="fnOpenFifth('jiu2');"></span>
+                <span><img src="../image/xin/le1.jpg" alt="" onclick="fnOpenSixth('le1');"></span>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    let cube = document.querySelector('#cube')
+    let p = document.querySelector('#p')
+        // 定义一个旋转初始量
+    let init = {
+        x: -21,
+        y: 38
+    };
+
+    apiready = function() {
+        handleMove();
+    }
+
+    // 屏幕滑动包装
+    function handleMove() {
+        let canMove = false
+            // 监听手指点击屏幕事件【手指按下】
+        document.addEventListener('touchstart', function(event) {
+                let down = {
+                    x: event.touches[0].clientX,
+                    y: event.touches[0].clientY
+                }
+                let transform = cube.style.transform
+                if (transform) {
+                    let array = transform.split(' ')
+                        // 使用正则提取x,y的值
+                        //console.log(array[0].match(/rotateY\((.*)deg\)/))
+                    let nowXY = {
+                            x: array[0].match(/rotateX\((.*)deg\)/)[1],
+                            y: array[1].match(/rotateY\((.*)deg\)/)[1]
+                        }
+                        // nowXY就是当前多次点击之后，真实的transform 的 rotateX 与 rotateY的值，把初始值盖掉
+                        // 值为什么会过大，因为我们下面是无限往上加的
+                        // 这时候我们知道每360度是一个循环，那就用360取余处理即可
+                    init = {
+                        x: nowXY.x % 360,
+                        y: nowXY.y % 360
+                    }
+                }
+                canMove = true
+                    // 监听手指移动事件【滑动】
+                document.addEventListener('touchmove', function(event) {
+                    // 可以看出，当手指离开的时候，move事件还处于工作状态，而我们需要的是手指离开，move事件关闭
+                    //event.preventDefault();
+                    if (canMove) { // 如果canMove为真时，即表示move正常工作
+                        let move = {
+                            x: event.changedTouches[0].clientX,
+                            y: event.changedTouches[0].clientY
+                        }
+                        rotateXY(down, move)
+                    }
+                })
+            })
+            // 监听手指离开屏幕事件
+        document.addEventListener('touchend', function(event) {
+            let up = {
+                x: event.changedTouches[0].clientX,
+                y: event.changedTouches[0].clientY
+            }
+            canMove = false
+        })
+
+        function rotateXY(down, move) {
+            let x = move.x - down.x, // x,y为偏移量，通过速度变量来控制偏移量即可
+                y = move.y - down.y,
+                speed = 0.5 // 速度控制器
+                // 旋转，x轴上的值是y, y轴上的值是x，想一下旋转的概念就理解了
+            let result = {
+                x: init.x + speed * y + 'deg',
+                y: init.y + speed * x + 'deg'
+            }
+            cube.style.transform = `rotateX(${ result.x }) rotateY(${ result.y }) rotateZ(0deg) translate3d(0px, 0px, 100px)`
+        }
+    }
+    function openFullView(name) {
+        api.openWin({
+            name: 'fullView',
+            url: './page_fullView.html',
+            pageParam: {panoramicPath: name}
+        });
+
+    }
+
+    function fnOpenFirst(name) {
+        cube.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+        p.innerHTML = "九寨沟";
+        p.classList.add('Amination');
+        setTimeout(function () {
+            clean(name);
+        }, 2000);
+    }
+
+    function fnOpenSecond(name) {
+        cube.style.transform = `rotateX(-90deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+        p.innerHTML = "青城山";
+        p.classList.add('Amination');
+        setTimeout(function () {
+            clean(name);
+        }, 2000);
+    }
+
+    function fnOpenThird(name) {
+        cube.style.transform = `rotateX(0deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+        p.innerHTML = "海螺沟";
+        p.classList.add('Amination');
+        setTimeout(function () {
+            clean(name);
+        }, 2000);
+    }
+
+    function fnOpenFourth(name) {
+        cube.style.transform = `rotateX(90deg) rotateY(180deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+        p.innerHTML = "熊猫基地";
+        p.classList.add('Amination');
+        setTimeout(function () {
+            clean(name);
+        }, 2000);
+    }
+
+    function fnOpenFifth(name) {
+        cube.style.transform = `rotateX(0deg) rotateY(90deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+        p.innerHTML = "九寨沟五花海";
+        p.classList.add('Amination');
+        setTimeout(function () {
+            clean(name);
+        }, 2000);
+    }
+
+    function fnOpenSixth(name) {
+        cube.style.transform = `rotateX(0deg) rotateY(-90deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+        p.innerHTML = "乐山大佛";
+        p.classList.add('Amination');
+        setTimeout(function () {
+            clean(name);
+        }, 2000);
+    }
+
+    function clean(name) {
+        fnOpenOtherFrame(name);
+        p.innerHTML = "";
+        p.classList.remove('Amination');
+        cube.style.transform = `rotateX(-21deg) rotateY(38deg) rotateZ(0deg) translate3d(0px, 0px, 100px)`;
+    }
+
+    function fnOpenOtherFrame(name) {
+        openFullView(name);
+    }
+</script>
+
+</html>

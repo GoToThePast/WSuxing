@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>大熊猫</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        body {
+          /*修改背景*/
+            background: url("../image/pander/bg.jpg");
+            background-size: 100% 100%;
+            background-color: #fff;
+            margin: 0;
+        }
+
+        a.button {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            height: 32px;
+            margin: 8px;
+            background-color: rgba(240, 240, 240, 1.0);
+            border-color: rgba(220, 220, 220, 1.0);
+            border-width: none;
+        }
+
+        a.active {
+            background-color: rgba(240, 240, 240, 0.7);
+        }
+
+        .back {
+            position: absolute;
+            width: 20px;
+            height: 25px;
+            margin-top: 35px;
+            margin-left: 25px;
+            z-index: 1;
+        }
+
+        .theme {
+            position: relative;
+            width: auto;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 22px;
+            top: 35px;
+            font-family: sans-serif;
+        }
+
+        .progress {
+            position: absolute;
+            width: 300px;
+            height: 20px;
+            margin-top: 100px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .right {
+            position: relative;
+            width: auto;
+            height: 30px;
+            top: 85px;
+            margin-left: 265px;
+        }
+
+        .go {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            margin-top: 40px;
+        }
+
+        .first {
+            left: 30px;
+        }
+
+        .second {
+            left: 150px;
+        }
+
+        .third {
+            left: 300px;
+        }
+
+        .nomore {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .bamboo .firstleaf1 {
+            position: relative;
+            width: 15px;
+            height: 15px;
+            margin-top: 60px;
+            margin-left: 70px;
+        }
+
+        .bamboo .firstleaf2 {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            margin-top: 80px;
+            margin-left: 60px;
+            transform: rotate(270deg);
+        }
+
+        .sencondleaf1 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            margin-top: 55px;
+            margin-left: 10px;
+            transform: rotate(130deg);
+        }
+
+        .sencondleaf2 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            margin-top: 75px;
+            margin-left: 140px;
+            transform: rotate(360deg);
+        }
+
+        .thirdleaf1 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            margin-top: 55px;
+            margin-left: 100px;
+            transform: rotate(0deg);
+        }
+
+        .thirdleaf2 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            margin-top: 75px;
+            margin-left: -40px;
+            transform: rotate(180deg);
+        }
+
+        .thirdleaf3 {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            margin-top: 75px;
+            margin-left: 190px;
+            transform: rotate(240deg);
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../image/pander/back.png" alt="" class="back" onclick="api.closeWin();">
+    <div class="theme">大熊猫</div>
+    <div class="prog">
+        <img class="progress" src="../image/pander/progress.png" alt="">
+        <img src="../image/pander/rg.png" alt="" class="right">
+        <nav id='nav' class="nav">
+            <img src="../image/pander/pander.png" alt="" class="go first">
+            <img src="../image/pander/pander.png" alt="" class="go second">
+            <img src="../image/pander/pander.png" alt="" class="go third">
+        </nav>
+        <div class="bamboo">
+            <img src="../image/pander/leaf.png" alt="" class="firstleaf1">
+            <img src="../image/pander/leaf.png" alt="" class="firstleaf2">
+            <img src="../image/pander/leafs.png" alt="" class="sencondleaf1">
+            <img src="../image/pander/leafs.png" alt="" class="sencondleaf2">
+            <img src="../image/pander/leafss.png" alt="" class="thirdleaf1">
+            <img src="../image/pander/leafss.png" alt="" class="thirdleaf2">
+            <img src="../image/pander/leafss.png" alt="" class="thirdleaf3">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var UICoverFlow;
+    var gos;
+    apiready = function() {
+        UICoverFlow = api.require('UICoverFlow');
+        gos = $api.domAll(nav, '.go');
+        fnOpen();
+    }
+
+    function fnOpen() {
+        UICoverFlow.open({
+            rect: {
+                x: 0,
+                y: 200,
+                w: api.winWidth,
+                h: 480
+            },
+            styles: {
+                bg: '',
+                image: {
+                    activeW: 200,
+                    activeH: 320,
+                    corner: 2,
+                    placeholder: 'widget://image/pander/1.png'
+                }
+
+            },
+            images: [{
+                url: 'widget://image/pander/1.png'
+            }, {
+                url: 'widget://image/pander/2.png'
+            }, {
+                url: 'widget://image/pander/3.png'
+            }],
+            index: 0,
+            interval: 1000,
+            fixedOn: api.frameName,
+            fixed: false
+        }, function(ret, err) {
+            progress(ret.index)
+        });
+    }
+
+    function progress(index_) {
+        $api.addCls(gos[0], 'active');
+        for (var i = 0; i < gos.length; i++) {
+            if (index_ == i) {
+                $api.removeCls(gos[0], 'active');
+                $api.removeCls(gos[i], 'nomore');
+            } else {
+                $api.addCls(gos[i], 'nomore');
+            }
+        }
+    }
+
+</script>
+
+</html>

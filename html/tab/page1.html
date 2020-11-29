@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>推荐</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+	<style>
+        .clearfix:before,
+        .clearfix:after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .clearfix{
+            zoom: 1;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 130%;
+            background-color: #f2f2f2;
+            font-family: '楷体';
+
+        }
+        .container{
+            width: 100%;
+            height: 290px;
+            margin-top: 5px;
+            background-color:#ffffff;
+            margin-bottom: 10px;
+        }
+        .container .container_info{
+            position: relative;
+            width: 320px;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .cover{
+            width: 100%;
+            height: 180px;
+            margin-top: 10px;
+            background-size: 100% 100%;
+            border-radius: 4%;
+        }
+        .type{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 14px;
+            right: 4px;
+            background-color: #000000;
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+        .type img{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 5px;
+            left: 5px;
+            background-size: 100% 100%;
+        }
+        .title{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        .user{
+            margin-top: 5px;
+            display: -webkit-flex;
+            display: flex;
+        }
+        .user .head{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        .user .name{
+            width: 86px;
+            height: 35px;
+            margin-left: 5px;
+            line-height: 35px;
+            text-align: center;
+        }
+        .user .like{
+            width:110px;
+            height: 30px;
+            margin-top: 2px;
+            margin-left: 74px;
+        }
+	</style>
+</head>
+<body class="clearfix">
+    <div class="container clearfix" >
+        <div class="container_info">
+            <img class="cover" src="../../image/yu/c1.png"/>
+            <div class="type clearfix"><img src="../../image/yu/type.png"/></div>
+            <div class="title">品味一杯竹叶青茶，提神益思!</div>
+            <div class="user">
+                <img class="head" src="../../image/yu/h1.jpg"/>
+                <div class="name">IAmTrying</div>
+                <img class="like" src="../../image/yu/p1.png"/>
+            </div>
+        </div>
+    </div>
+    <div class="container clearfix" >
+        <div class="container_info">
+            <img class="cover clearfix" src="../../image/yu/c2.png"/>
+            <div class="type"><img src="../../image/yu/type.png"/></div>
+            <div class="title">川味特辣火锅！爽！下次还吃这个</div>
+            <div class="user">
+                <img class="head" src="../../image/yu/h2.jpg"/>
+                <div class="name">扎克小迷弟</div>
+                <img class="like" src="../../image/yu/p2.png"/>
+            </div>
+        </div>
+    </div>
+    <div class="container clearfix" >
+        <div class="container_info">
+            <img class="cover clearfix" src="../../image/yu/c3.png"/>
+            <div class="type"><img src="../../image/yu/type.png"/></div>
+            <div class="title">熊猫纯、熊猫魂、来世还做熊猫人</div>
+            <div class="user">
+                <img class="head" src="../../image/yu/h3.jpg"/>
+                <div class="name">Główny kąt</div>
+                <img class="like" src="../../image/yu/p3.png"/>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        let covs=document.getElementsByClassName("cover");
+        for (let i=0;i<covs.length;i++)
+        {
+            covs[i].addEventListener("click",function () {
+                api.openWin({
+                    name: 'name',
+                    url: './video.html',
+                    rect: {
+                        x: 0,
+                        y: 0,
+                        w: 'auto',
+                        h: 'auto'
+                    },
+                    bounces: false
+                });
+            })
+        }
+    };
+</script>
+</html>
